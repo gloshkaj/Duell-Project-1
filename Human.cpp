@@ -69,10 +69,13 @@ void Human::GetInput(Board & a_board, int a_turn) {
 	int top = 0;
 	// To count invalid inputs
 	int invalid = 0;
+	// To determine numeric input from user
+	bool numeric = true;
 	// To determine whether to ask for help
 	char help;
 	do {
 		// If the human made 10 wrong inputs then his turn is over.
+		numeric = true;
 		if (invalid == 10) {
 			cout << "Garen has forfeited this turn since he made too many incorrect inputs!" << endl;
 			return;
@@ -99,6 +102,7 @@ void Human::GetInput(Board & a_board, int a_turn) {
 			cin.clear();
 			cin.ignore(256, '\n');
 			invalid++;
+			numeric = false;
 			continue;
 		}
 		// If the coordinates are not in the required range then report error that the coordinates are out of bounds of the array and continue.
@@ -130,6 +134,7 @@ void Human::GetInput(Board & a_board, int a_turn) {
 			cin.clear();
 			cin.ignore(256, '\n');
 			invalid++;
+			numeric = false;
 			continue;
 		}
 		if (m_DestRow < 1 || m_DestRow > 8) {
@@ -306,7 +311,7 @@ void Human::GetInput(Board & a_board, int a_turn) {
 				continue;
 			}
 		}
-	} while (cin.fail() || occupied || m_NextRow < 1 || m_NextRow > 8 || m_NextCol < 1 || m_NextCol > 9 || abs(abs(m_DestRow - m_NextRow) + abs(m_DestCol - m_NextCol)) != abs(top) || m_DestRow < 1 || m_DestRow > 8 || m_DestCol < 1 || m_DestCol > 9 || currentBoard[9 - m_DestRow][m_DestCol] != "0" && toupper(currentBoard[9 - m_DestRow][m_DestCol][0]) != 'C');
+	} while (!numeric || occupied || m_NextRow < 1 || m_NextRow > 8 || m_NextCol < 1 || m_NextCol > 9 || abs(abs(m_DestRow - m_NextRow) + abs(m_DestCol - m_NextCol)) != abs(top) || m_DestRow < 1 || m_DestRow > 8 || m_DestCol < 1 || m_DestCol > 9 || currentBoard[9 - m_DestRow][m_DestCol] != "0" && toupper(currentBoard[9 - m_DestRow][m_DestCol][0]) != 'C');
 	// Number of spaces to move frontally
 	m_frontMove = abs(m_DestRow - m_NextRow);
 	// Number of spaces to move laterally

@@ -11,7 +11,7 @@ using namespace std;
 * Project Description: C++ Duell Project (#1)
 * Class: CMPS 366, Organization of Programming Languages   
 * Project Due on: 10/21/16 (Extended Submission)
-* Project Submitted on: 10/18/2016                          
+* Project Submitted on: 10/19/2016                          
 ************************************************************/
 int main() {
 	Tournament tournament; // The object that holds the set of rounds that will be played

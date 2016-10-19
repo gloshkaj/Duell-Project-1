@@ -624,6 +624,9 @@ void Computer::Play(Board & a_board, int a_turn, string a_first, string a_player
 						// Invalid path. Computer does not win. Move on.
 						continue;
 					}
+					if (!IsValidDestinationSquare(currentBoard, allowedDist)) {
+						continue;
+					}
 					cout << "The computer chose to move " << DieToRoll << " located at (" << m_NextRow << ", " << m_NextCol << ") to finish the game!" << endl;
 					if (m_direction == "frontally") {
 						cout << "It moved it frontally by " << m_frontMove << " and laterally by " << m_lateralMove << " to square (" << m_DestRow << ", " << m_DestCol << ") to win the round! ";
@@ -835,6 +838,9 @@ bool Computer::HelpHuman(Board & a_board) {
 					m_lateralMove = abs(m_DestCol - m_NextCol);
 					if (!IsValidPath(currentBoard)) {
 						// Invalid path. Move on.
+						continue;
+					}
+					if (!IsValidHumanDestinationSquare(currentBoard, allowedDist)) {
 						continue;
 					}
 					// Suggest the move.

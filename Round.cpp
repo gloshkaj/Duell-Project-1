@@ -27,7 +27,7 @@ Returns: True if the opponent's key die cannot be found or if the key piece was 
 ********************************************************************* */
 bool Round::GameOver() { // In every case that returns true, reset the board.
 	if (m_board.GetBoard()[1][5] == "H11") { // Human placed key piece on computer's key square. Human wins. Increment human wins.
-		cout << "Garen placed his key die on the computer's key square! Garen has won this round!" << endl;
+		cout << "Garen has placed his key piece on the computer's key square! Garen has won this round!" << endl;
 		m_HumanWins++;
 		cout << "The computer won " << m_CompWins << " rounds and Garen won " << m_HumanWins << " rounds. " << endl;
 		ResetBoard();
@@ -41,7 +41,7 @@ bool Round::GameOver() { // In every case that returns true, reset the board.
 		return true;
 	}
 	else if (m_board.GetBoard()[8][5] == "C11") { // Computer placed key piece on human's key square. Computer wins. Increment computer wins.
-		cout << "The computer placed its key die on Garen's key square! The computer has won this round!" << endl;
+		cout << "The computer has placed its key piece on Garen's key square! The computer has won this round!" << endl;
 		m_CompWins++;
 		cout << "The computer won " << m_CompWins << " rounds and Garen won " << m_HumanWins << " rounds. " << endl;
 		ResetBoard();
@@ -299,6 +299,7 @@ void Round::PlayGame() {
 			// While the conditions for the game being over are not met, have the human and computer alternate turns. Ask to serialize after every turn. If they said yes, the program would terminate when the user gives the filename to save the game to.
 			while (m_board.FindKeyPiece("C11") && m_board.FindKeyPiece("H11") && m_board.GetBoard()[1][5] != "H11" && m_board.GetBoard()[8][5] != "C11") {
 				m_turnNo++;
+				cout << firstPlayer << " is playing." << endl;
 				if (firstPlayer == "Garen") {
 					m_NextPlayer = "Computer";
 					m_humanTurns++;
@@ -307,10 +308,10 @@ void Round::PlayGame() {
 					if (GameOver()) { // In all cases, if the conditions are met for the game being over, get out of the function.
 						return;
 					}
-					cout << "Next player: " << m_NextPlayer << endl; // Next player would be first player in all cases after each player took a turn.
 					if (IsSavedGame()) {
 						exit(1);
 					}
+					cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 					m_compTurns++;
 					m_player = &m_computer;
 					m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer); // Polymorphic behavior behind the scenes
@@ -323,10 +324,10 @@ void Round::PlayGame() {
 					if (GameOver()) {
 						return;
 					}
-					cout << "Next player: " << m_NextPlayer << endl;
 					if (IsSavedGame()) {
 						exit(1);
 					}
+					cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 					m_humanTurns++;
 					m_player = &m_human;
 					m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer);
@@ -365,6 +366,7 @@ void Round::PlayGame() {
 				if (m_compTurns == m_humanTurns) {
 					m_turnNo++;
 				}
+				cout << firstPlayer << " is playing." << endl;
 				if (firstPlayer == "Garen") {
 					m_NextPlayer = "Computer";
 					m_humanTurns++;
@@ -379,7 +381,7 @@ void Round::PlayGame() {
 					if (m_compTurns == m_humanTurns) {
 						m_turnNo++;
 					}
-					cout << "Next player: " << m_NextPlayer << endl;
+					cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 					m_compTurns++;
 					m_player = &m_computer;
 					m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer);
@@ -392,13 +394,13 @@ void Round::PlayGame() {
 					if (GameOver()) {
 						return;
 					}
-					cout << "Next player: " << m_NextPlayer << endl;
 					if (IsSavedGame()) {
 						exit(1);
 					}
 					if (m_compTurns == m_humanTurns) {
 						m_turnNo++;
 					}
+					cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 					m_humanTurns++;
 					m_player = &m_human;
 					m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer);
@@ -427,6 +429,7 @@ void Round::PlayGame() {
 		}
 		while (m_board.FindKeyPiece("C11") && m_board.FindKeyPiece("H11") && m_board.GetBoard()[1][5] != "H11" && m_board.GetBoard()[8][5] != "C11") {
 			m_turnNo++;
+			cout << firstPlayer << " is playing." << endl;
 			if (firstPlayer == "Garen") {
 				m_NextPlayer = "Computer";
 				m_humanTurns++;
@@ -435,10 +438,10 @@ void Round::PlayGame() {
 				if (GameOver()) {
 					return;
 				}
-				cout << "Next player: " << m_NextPlayer << endl;
 				if (IsSavedGame()) {
 					exit(1);
 				}
+				cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 				m_compTurns++;
 				m_player = &m_computer;
 				m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer);
@@ -451,10 +454,10 @@ void Round::PlayGame() {
 				if (GameOver()) {
 					return;
 				}
-				cout << "Next player: " << m_NextPlayer << endl;
 				if (IsSavedGame()) {
 					exit(1);
 				}
+				cout << m_NextPlayer << " is playing." << endl; // Next player would be first player in all cases after each player took a turn.
 				m_humanTurns++;
 				m_player = &m_human;
 				m_player->Play(m_board, m_turnNo, firstPlayer, m_NextPlayer);
