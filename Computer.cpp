@@ -607,7 +607,7 @@ void Computer::Play(Board & a_board, int a_turn, string a_first, string a_player
 				dist = abs(currentRow - rowOfHumanKeyPiece) + abs(currentCol - colOfHumanKeyPiece);
 				distToOtherKeySquare = abs(currentRow - 1) + abs(currentCol - 5);
 				allowedDist = (currentBoard[9 - i][j][1] - '0') % 48;
-				isOnKeySquare = (distToOtherKeySquare == allowedDist && currentBoard[9 - i][j][1] == '1' && currentBoard[9-i][j][1] == '1');
+				isOnKeySquare = (distToOtherKeySquare == allowedDist && currentBoard[9 - i][j][1] == '1' && currentBoard[9-i][j][2] == '1');
 				if (dist == allowedDist || isOnKeySquare) { // If the distance to the key piece is equal to the allowed distance and the path is not blocked, then this is a move that captures the key piece
 					m_NextRow = currentRow;
 					m_NextCol = currentCol;
@@ -821,7 +821,7 @@ bool Computer::HelpHuman(Board & a_board) {
 				dist = abs(currentRow - rowOfCompKeyPiece) + abs(currentCol - colOfCompKeyPiece);
 				distToOtherKeySquare = abs(currentRow - 8) + abs(currentCol - 5);
 				allowedDist = (currentBoard[9 - i][j][1] - '0') % 48;
-				isOnKeySquare = (distToOtherKeySquare == allowedDist && currentBoard[9 - i][j][1] == '1' && currentBoard[9 - i][j][1] == '1');
+				isOnKeySquare = (distToOtherKeySquare == allowedDist && currentBoard[9 - i][j][1] == '1' && currentBoard[9 - i][j][2] == '1');
 				if (dist == allowedDist || isOnKeySquare) { // If the distance to the key piece is equal to the allowed distance and the path is not blocked, then this is a move that captures the key piece
 					m_NextRow = currentRow;
 					m_NextCol = currentCol;
